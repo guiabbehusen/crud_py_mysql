@@ -1,27 +1,24 @@
 import mysql.connector
 
-    # Conectar ao banco de dados
 conexao = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='admin',
-        database='bdyoutube'
-    )
+        host="localhost",
+        port=3306,
+        user="root",
+        password="123456",
+        database='bdyoutube',
+
+)
+
+nome_produto = "toddynho"
+valor = 10
 
 cursor = conexao.cursor()
 
-nome_produto = "nescau"
-valor = 3
-comando = f"INSERT INTO vendas (nome_produto, valor) VALUES ('{nome_produto}', {valor})"
-print
-
+comando = f'INSERT INTO vendas (nome_produto, valor) VALUES ("{nome_produto}", {valor})'
 
 cursor.execute(comando)
 conexao.commit()
 
 
-
-
 cursor.close()
 conexao.close()
-
