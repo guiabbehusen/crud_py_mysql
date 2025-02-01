@@ -1,45 +1,74 @@
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+/* Resetando estilos básicos */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.container {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
+/* Fonte padrão */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Utiliza toda a altura da tela */
+    padding: 0 20px;
 }
 
+/* Definir o estilo do título */
 h1 {
     text-align: center;
-    color: #343a40;
+    margin-top: 30px;
+    color: #0a0a0a;
+    font-size: 3rem;
+    font-weight: bold;
 }
 
-.task-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.task-card p {
-    margin: 5px 0;
-}
-
-.task-card .btn {
-    background-color: #007bff;
+/* Estilo para os botões */
+button {
+    background-color: #4CAF50;
     color: white;
-    padding: 8px 12px;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    padding: 15px 32px;
+    text-align: center;
     text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.task-card .btn:hover {
-    background-color: #0056b3;
+/* Efeito de hover */
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Efeito de foco */
+button:focus {
+    outline: none;
+}
+
+/* Se você tiver mais elementos, pode usar margens para espaçar tudo */
+.container {
+    margin-top: 50px;
+    text-align: center;
+}
+
+/* Para dispositivos menores */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        width: 100%; /* Botões ficam em toda largura */
+        padding: 12px;
+    }
 }
