@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Lista de Tarefas</h1>
+        
+        {% for task in tasks %}
+            <div class="task-card">
+                <p><strong>Descrição:</strong> {{ task.descricao }}</p>
+                <p><strong>Status:</strong> {% if task.status == 1 %} Concluída {% else %} Em andamento {% endif %}</p>
+                <p><strong>Data de Criação:</strong> {{ task.data_criacao }}</p>
+                <p><strong>Data de Conclusão:</strong> {{ task.data_conclusao if task.data_conclusao else 'Não definida' }}</p>
+                <a href="{{ url_for('edit_task', idtarefas=task.id) }}" class="btn">Editar</a>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
