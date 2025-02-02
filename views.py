@@ -9,21 +9,32 @@ def homepage():
 
 @app.route("/create_task", methods=['GET', 'POST'])
 def create_task():
+    today = datetime.date.today()
     if request.method == 'POST':
         descricao = request.form['descricao']
         data_criacao = request.form.get('data_criacao')
         if not data_criacao:
-            data_criacao = datetime.date.today()
+            data_criacao = today
         else:
-            data_criacao = datetime.datetime.strptime(data_criacao, "%Y-%m-%d").date()
+            try:
+                data_criacao = datetime.datetime.strptime(data_criacao, "%Y-%m-%d").date()
+            except ValueError:
+                data_criacao = today
 
         data_conclusao = request.form.get('data_conclusao')
         if data_conclusao:
-            data_conclusao = datetime.datetime.strptime(data_conclusao, "%Y-%m-%d").date()
+            try:
+                data_conclusao = datetime.datetime.strptime(data_conclusao, "%Y-%m-%d").date()
+            except ValueError:
+                data_conclusao = None
         else:
             data_conclusao = None
+
         status = int(request.form.get('status', 0))
         
+        if not descricao:
+            return "Erro: Descrição é obrigatória", 400
+
         nova_tarefa = Tarefas(
             descricao=descricao,
             status=status,
@@ -31,10 +42,16 @@ def create_task():
             data_conclusao=data_conclusao,
         )
 
-        db.session.add(nova_tarefa)
-        db.session.commit()
-        return redirect(url_for("view_tasks"))
-    return render_template('create_task.html')
+        try:
+            db.session.add(nova_tarefa)
+            db.session.commit()
+            return redirect(url_for("view_tasks"))
+        except Exception as e:
+            db.session.rollback()
+            return f"Erro ao salvar tarefa: {str(e)}", 500
+    
+    return render_template('create_task.html', today=today)
+
 
 @app.route("/view_tasks")
 def view_tasks():

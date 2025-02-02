@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criando Tarefas</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     
+   <form method="POST">
+
+    <label for="descricao">Descrição da sua tarefa!</label><br>
+    <input type="text" id="descricao" name="descricao"><br><br>
+
+    <label for="data_criacao">Quando começa?</label><br>
+    <input type="date" id="data_criacao" value="{{ today }}" required><br><br>
+
+    <label for="data_conclusao">Quando termina?</label><br>
+    <input type="date" id="data_conclusao" name="data_conclusao"><br>
+    
+    <button type="submit">Criar tarefa!</button>
+   </form>
+
 </body>
 </html>

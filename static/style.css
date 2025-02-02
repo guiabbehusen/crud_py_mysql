@@ -72,3 +72,40 @@ button:focus {
         padding: 12px;
     }
 }
+
+/* Estilos para a container principal */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para o título */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Estilos para os cards das tarefas */
+.task-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+/* Estilos para o botão de editar */
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
