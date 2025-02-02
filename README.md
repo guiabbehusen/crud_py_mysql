@@ -1,2 +1,3 @@
 # crud_py_mysql
- CRUD feita em Python utilizando MySQL e HTML/CSS. Além de bibliotecas como: Flask, pymysql, SQLAlchemy.
+Criação de uma "To-Do List" no modelo CRUD feito em Python, utilizando o banco de dados MySQL e tecnologias web, como HTML e CSS para o front-end. 
+Bibliotecas e frameworks utilizados: Flask, SQLAlchemy, pymysql.
