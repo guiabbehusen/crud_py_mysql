@@ -31,7 +31,7 @@ def create_task():
             data_conclusao = None
 
         status = int(request.form.get('status', 0))
-        
+
         if not descricao:
             return "Erro: Descrição é obrigatória", 400
 
@@ -68,21 +68,26 @@ def completed():
     tasks_completed = Tarefas.query.filter_by(status=1).all() 
     return render_template('view_completed.html', tasks=tasks_completed)
 
-@app.route("/edit_tasks/<int:idtarefas>", methods=['GET', 'POST'])
+@app.route("/edit_task/<int:idtarefas>", methods=['GET', 'POST'])
 def edit_task(idtarefas):
     task = Tarefas.query.get_or_404(idtarefas)
     if request.method == 'POST':
-        task.descricao = request.form.get('descricao', task.descricao)
-        task.status = int(request.form.get('status', task.status))
-        data_criacao = request.form.get('data_criacao')
-        if data_criacao:
-            task.data_criacao = datetime.datetime.strptime(data_criacao, "%Y-%m-%d").date()
-
-        data_conclusao = request.form.get('data_conclusao')
+        descricao = request.form.get('descricao', task.descricao)
+        status = int(request.form.get('status', task.status))
+        
+        data_criacao = request.form.get('data_criacao', str(task.data_criacao))
+        data_conclusao = request.form.get('data_conclusao', str(task.data_conclusao)) if request.form.get('data_conclusao') else None
+        
+        task.descricao = descricao
+        task.status = status
+        task.data_criacao = datetime.datetime.strptime(data_criacao, "%Y-%m-%d").date()  # Garantir formato correto
         if data_conclusao:
             task.data_conclusao = datetime.datetime.strptime(data_conclusao, "%Y-%m-%d").date()
         else:
             task.data_conclusao = None
+        
         db.session.commit()
         return redirect(url_for("view_tasks"))
-    return render_template("edit_tasks.html", task=task)
+    
+    return render_template("edit_task.html", task=task)
+

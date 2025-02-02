@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Editar tarefa</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+
+    <h1>Editar Tarefas</h1>
+
+    <p>Descrição da tarefa: {{ task.descricao }}</p>
+
+    <form method="POST">
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" value="{{ task.descricao }}"  required><br>
+
+        <label for="status">Status:</label>
+        <select name="status" id="status">
+            <option value="0" {% if task.status == 0 %}selected{% endif %}>Em andamento</option>
+            <option value="1" {% if task.status == 1 %}selected{% endif %}>Concluída</option>
+        </select><br><br>
+
+        <label for="data_criacao">Data de inicio:</label>
+        <input type="date" id="data_criacao" name="data_criacao" value="{{ task.data_criacao.strftime('%Y-%m-%d') }}">
+
+
+        <label for="data_conclusao">Data de Conclusão:</label>
+        <input type="date" id="data_conclusao" name="data_conclusao" value="{{ task.data_conclusao.strftime('%Y-%m-%d') if task.data_conclusao else '' }}"><br><br>
+
+        <button type="submit">Salvar</button>
+
+
+    </form>
+
 
     
 </body>

@@ -15,8 +15,8 @@
             {% for task in tasks %}
                 <div class="task-card">
                     <p><strong>Descrição:</strong> {{ task.descricao }}</p>
-                    <p><strong>Data de Criação:</strong> {{ task.data_criacao }}</p>
-                    <p><strong>Data de Conclusão:</strong> {{ task.data_conclusao if task.data_conclusao else 'Não definida' }}</p>
+                    <p><strong>Data de inicio:</strong> {{ task.data_criacao }}</p>
+                    <p><strong>Data para finalizar:</strong> {{ task.data_conclusao if task.data_conclusao else 'Não definida' }}</p>
                     <a href="{{ url_for('edit_task', idtarefas=task.idtarefas) }}" class="btn">Editar</a>
                 </div>
             {% endfor %}

@@ -109,3 +109,135 @@ h1 {
 .btn:hover {
     background-color: #45a049;
 }
+
+/* Resetando margens e preenchimento */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Definindo fontes e cores base */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Estilo para o container principal */
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o título */
+h1 {
+    text-align: center;
+    color: #000000;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Estilo para o formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Estilo para os rótulos (labels) */
+label {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Estilo para os inputs de texto e data */
+input[type="text"],
+input[type="date"],
+select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Foco nos inputs para destacar ao clicar */
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Estilo para o botão */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito no botão ao passar o mouse */
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para as mensagens de erro (se houver) */
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* Estilo para a lista de tarefas */
+.task-card {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-card p {
+    margin: 10px 0;
+}
+
+/* Estilo para os botões de ações (editar, deletar) dentro da tarefa */
+.task-card a {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito no botão de edição quando o mouse passa por cima */
+.task-card a:hover {
+    background-color: #45a049;
+}
+
+/* Adicionando um estilo visual para as tarefas concluídas */
+.task-card.completed {
+    background-color: #e8f5e9;
+    border-left: 5px solid #4CAF50;
+}
+
+.task-card.in-progress {
+    background-color: #fff3e0;
+    border-left: 5px solid #ff9800;
+}
