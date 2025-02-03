@@ -1,27 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criando Tarefas</title>
+    <link rel="stylesheet" href="/static/bulma/css/bulma.min.css">
     <link rel="stylesheet" href="/static/style.css">
-    
 </head>
 <body>
-    
-   <form method="POST">
+    <div class="container">
+        <h1 class="title has-text-centered">Criar Nova Tarefa</h1>
 
-    <label for="descricao">Descrição da sua tarefa!</label><br>
-    <input type="text" id="descricao" name="descricao"><br><br>
+        <form method="POST">
+            <div class="field">
+                <label class="label" for="descricao">Descrição da sua tarefa!</label>
+                <div class="control">
+                    <input class="input" type="text" id="descricao" name="descricao" required>
+                </div>
+            </div>
 
-    <label for="data_criacao">Quando começa?</label><br>
-    <input type="date" id="data_criacao" value="{{ today }}" required><br><br>
+            <div class="field">
+                <label class="label" for="data_criacao">Quando começa?</label>
+                <div class="control">
+                    <input class="input" type="date" id="data_criacao" value="{{ today }}" required>
+                </div>
+            </div>
 
-    <label for="data_conclusao">Quando termina?</label><br>
-    <input type="date" id="data_conclusao" name="data_conclusao"><br>
-    
-    <button type="submit">Criar tarefa!</button>
-   </form>
+            <div class="field">
+                <label class="label" for="data_conclusao">Quando termina?</label>
+                <div class="control">
+                    <input class="input" type="date" id="data_conclusao" name="data_conclusao">
+                </div>
+            </div>
 
+            <div class="field">
+                <div class="control">
+                    <button class="button is-primary is-fullwidth" type="submit">Criar tarefa!</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

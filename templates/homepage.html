@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/style.css">
-
     <title>To-Do List</title>
+    <link rel="stylesheet" href="/static/bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
-
 <body>
-    <h1>To-Do List</h1>
-    <a href="/create_task">
-        <button>Adicionar tarefa!</button>
-    </a>
-    <a href="/view_tasks">
-        <button>Ver Tarefas</button>
-    </a>
-    </a>
-
-    </form>
-
+    <div class="container">
+        <h1 class="title has-text-centered">Bem-vindo à To-Do List</h1>
+        <div class="buttons is-centered">
+            <a href="/create_task" class="button is-primary">Adicionar Tarefa</a>
+            <a href="/view_tasks" class="button is-link">Ver Tarefas</a>
+        </div>
+    </div>
 </body>
 </html>

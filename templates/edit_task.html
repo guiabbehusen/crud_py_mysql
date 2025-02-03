@@ -1,45 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar tarefa</title>
+    <title>Editar Tarefa</title>
+    <link rel="stylesheet" href="/static/bulma/css/bulma.min.css">
     <link rel="stylesheet" href="/static/style.css">
-
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
+    <div class="container">
+        <h1 class="title has-text-centered">Editar Tarefa</h1>
 
-    <h1>Editar Tarefas</h1>
+        <form method="POST">
+            <div class="field">
+                <label class="label" for="descricao">Descrição:</label>
+                <div class="control">
+                    <input class="input" type="text" id="descricao" name="descricao" value="{{ task.descricao }}" required>
+                </div>
+            </div>
 
-    <p>Descrição da tarefa: {{ task.descricao }}</p>
+            <div class="field">
+                <label class="label" for="status">Status:</label>
+                <div class="control">
+                    <div class="select">
+                        <select name="status" id="status">
+                            <option value="0" {% if task.status == 0 %}selected{% endif %}>Em andamento</option>
+                            <option value="1" {% if task.status == 1 %}selected{% endif %}>Concluída</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-    <form method="POST">
-        <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao" name="descricao" value="{{ task.descricao }}"  required><br>
+            <div class="field">
+                <label class="label" for="data_criacao">Data de início:</label>
+                <div class="control">
+                    <input class="input flatpickr" type="text" id="data_criacao" name="data_criacao" value="{{ task.data_criacao.strftime('%Y-%m-%d') }}">
+                </div>
+            </div>
 
-        <label for="status">Status:</label>
-        <select name="status" id="status">
-            <option value="0" {% if task.status == 0 %}selected{% endif %}>Em andamento</option>
-            <option value="1" {% if task.status == 1 %}selected{% endif %}>Concluída</option>
-        </select><br><br>
+            <div class="field">
+                <label class="label" for="data_conclusao">Data de Conclusão:</label>
+                <div class="control">
+                    <input class="input flatpickr" type="text" id="data_conclusao" name="data_conclusao" value="{{ task.data_conclusao.strftime('%Y-%m-%d') if task.data_conclusao else '' }}">
+                </div>
+            </div>
 
-        <label for="data_criacao">Data de inicio:</label>
-        <input type="date" id="data_criacao" name="data_criacao" value="{{ task.data_criacao.strftime('%Y-%m-%d') }}">
+            <div class="field">
+                <div class="control">
+                    <button class="button is-success is-fullwidth" type="submit">Salvar</button>
+                </div>
+            </div>
 
+            <div class="field">
+                <div class="control">
+                    <button class="button is-danger is-fullwidth" type="submit" name="action" value="delete" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')">Excluir</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
-        <label for="data_conclusao">Data de Conclusão:</label>
-        <input type="date" id="data_conclusao" name="data_conclusao" value="{{ task.data_conclusao.strftime('%Y-%m-%d') if task.data_conclusao else '' }}"><br><br>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
 
-        <button type="submit">Salvar</button>
+        flatpickr('#data_criacao', {
+            dateFormat: 'Y-m-d',
+            locale: 'pt',
+            minDate: "today",
+            maxDate: "2099-12-31",
+            enableTime: false,
+        });
 
-        <button type="submit" name="action" value="delete" 
-        onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')" 
-        class="btn-delete">
-        <i class="fas fa-trash-alt"></i> Excluir
-        </button>
-    
-
-    </form>
-
+        flatpickr('#data_conclusao', {
+            dateFormat: 'Y-m-d',
+            locale: 'pt',
+            minDate: function() {
+                return document.getElementById('data_criacao').value;
+            },
+            enableTime: false,
+        });
+    </script>
 </body>
 </html>
