@@ -3,42 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criando Tarefas</title>
+    <title>Criar Tarefa</title>
     <link rel="stylesheet" href="/static/bulma/css/bulma.min.css">
     <link rel="stylesheet" href="/static/style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="title has-text-centered">Criar Nova Tarefa</h1>
+        <h1 class="title has-text-centered">Criar Tarefa</h1>
 
         <form method="POST">
             <div class="field">
-                <label class="label" for="descricao">Descrição da sua tarefa!</label>
+                <label class="label" for="descricao">Descrição:</label>
                 <div class="control">
                     <input class="input" type="text" id="descricao" name="descricao" required>
                 </div>
             </div>
 
             <div class="field">
-                <label class="label" for="data_criacao">Quando começa?</label>
+                <label class="label" for="data_criacao">Data de início:</label>
                 <div class="control">
-                    <input class="input" type="date" id="data_criacao" value="{{ today }}" required>
+                    <input class="input flatpickr" type="text" id="data_criacao" name="data_criacao" value="" required>
                 </div>
             </div>
 
             <div class="field">
-                <label class="label" for="data_conclusao">Quando termina?</label>
+                <label class="label" for="data_conclusao">Data de Conclusão:</label>
                 <div class="control">
-                    <input class="input" type="date" id="data_conclusao" name="data_conclusao">
+                    <input class="input flatpickr" type="text" id="data_conclusao" name="data_conclusao" value="">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
-                    <button class="button is-primary is-fullwidth" type="submit">Criar tarefa!</button>
+                    <button class="button is-success is-fullwidth" type="submit">Criar Tarefa</button>
                 </div>
             </div>
         </form>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+
+        flatpickr('#data_criacao', {
+            dateFormat: 'Y-m-d',
+            locale: 'pt',
+            minDate: "today",
+            maxDate: "2099-12-31",
+            enableTime: false, 
+        });
+
+
+        flatpickr('#data_conclusao', {
+            dateFormat: 'Y-m-d',
+            locale: 'pt',
+            minDate: function() {
+
+                return document.getElementById('data_criacao').value || "today"; 
+            },
+            enableTime: false, // Desabilita a hora
+        });
+
+        document.getElementById('data_criacao').addEventListener('change', function() {
+            const dataInicio = this.value;
+            const dataConclusao = document.getElementById('data_conclusao');
+            dataConclusao._flatpickr.set('minDate', dataInicio);
+        });
+    </script>
 </body>
 </html>
