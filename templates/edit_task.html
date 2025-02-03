@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar tarefa</title>
     <link rel="stylesheet" href="/static/style.css">
+
 </head>
 <body>
 
@@ -31,10 +32,14 @@
 
         <button type="submit">Salvar</button>
 
+        <button type="submit" name="action" value="delete" 
+        onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')" 
+        class="btn-delete">
+        <i class="fas fa-trash-alt"></i> Excluir
+        </button>
+    
 
     </form>
 
-
-    
 </body>
 </html>

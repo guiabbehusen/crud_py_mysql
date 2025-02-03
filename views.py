@@ -72,6 +72,16 @@ def completed():
 def edit_task(idtarefas):
     task = Tarefas.query.get_or_404(idtarefas)
     if request.method == 'POST':
+        action = request.form.get('action')
+        if action == "delete":
+            try:
+                db.session.delete(task)
+                db.session.commit()
+                return redirect(url_for("view_tasks"))
+            except Exception as e:
+                db.session.rollback()
+                return f"Erro ao excluir tarefa: {str(e)}", 500
+
         descricao = request.form.get('descricao', task.descricao)
         status = int(request.form.get('status', task.status))
         
@@ -80,7 +90,7 @@ def edit_task(idtarefas):
         
         task.descricao = descricao
         task.status = status
-        task.data_criacao = datetime.datetime.strptime(data_criacao, "%Y-%m-%d").date()  # Garantir formato correto
+        task.data_criacao = datetime.datetime.strptime(data_criacao, "%Y-%m-%d").date()
         if data_conclusao:
             task.data_conclusao = datetime.datetime.strptime(data_conclusao, "%Y-%m-%d").date()
         else:
